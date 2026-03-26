@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "author": "Breno",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-half", "id": "bb1", "top": -22.2, "left": 233.2, "attrs": {} },
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": -138, "left": 272.6, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": 298.1,
+      "left": 246.9,
+      "rotate": 180,
+      "attrs": { "distance": "46" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 70.6,
+      "left": 267.95,
+      "rotate": 270,
+      "attrs": { "value": "1000" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:GND.2", "bb1:tn.1", "black", [ "v0" ] ],
+    [ "led1:A", "bb1:tn.5", "black", [ "v0" ] ],
+    [ "ultrasonic1:GND", "bb1:tn.7", "black", [ "v-298.6", "h31.4" ] ],
+    [
+      "ultrasonic1:TRIG",
+      "esp:25",
+      "blue",
+      [ "v-20.2", "h-84.6", "v-38.4", "h-307.2", "v-134.4" ]
+    ],
+    [ "ultrasonic1:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "esp:27", "ultrasonic1:ECHO", "magenta", [ "h-43.01", "v144", "h362.6" ] ],
+    [ "led1:C", "bb1:5t.a", "green", [ "h0.4", "v124.8" ] ],
+    [ "r1:1", "bb1:5b.g", "", [ "$bb" ] ],
+    [ "r1:2", "bb1:5t.c", "", [ "$bb" ] ],
+    [ "esp:26", "bb1:5b.j", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
